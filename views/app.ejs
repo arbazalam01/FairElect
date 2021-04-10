@@ -1,64 +1,60 @@
 <%- include ('./partials/header') %>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-<script type="text/javascript">
-(function() {
-emailjs.init("user_vXd0OQsTJ65lIZZg2X4VF");
-})();
-</script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("user_vXd0OQsTJ65lIZZg2X4VF");
+    })();
+  </script>
 
-<script>
-  function emailJS(){
-    var name="",desc="";
-    name=document.getElementById("name").value;
-    desc=document.getElementById("desc").value;
-    // let email=document.getElementById("email").value;
-    emailjs.send("service_t7tmc49","template_019lgjr",{
-    to_name: "Faiz",
-    from_name: "Fair Elect",
-    message: "Someone trying to disturb the voting",
-    reply_to: "faizamu19@gmail.com",
-    // console.log(name);
-  });
-  // console.log(typeof(email));
-  
-}
-function geoFindMe() {
+  <script>
+    function emailJS() {
+     
+      
+      emailjs.send("service_t7tmc49", "template_019lgjr", {
+        from_name: "FAIZ ",
+        message: document.getElementById("desc").value+"Ät location"+document.querySelector('#map-link').textContent+"ïn "+document.getElementById("city").value+","+document.getElementById("state").value+","+document.getElementById("pincode").value, 
+        reply_to: "faizamu19@gmail.com",
+      });
+      // console.log(typeof(email));
 
-const status = document.querySelector('#status');
-const mapLink = document.querySelector('#map-link');
+    }
+    function geoFindMe() {
 
-mapLink.href = '';
-mapLink.textContent = '';
+      const status = document.querySelector('#status');
+      const mapLink = document.querySelector('#map-link');
 
-function success(position) {
-  const latitude  = position.coords.latitude;
-  const longitude = position.coords.longitude;
+      mapLink.href = '';
+      mapLink.textContent = '';
 
-  status.textContent = '';
-  mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-  mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-}
+      function success(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-function error() {
-  status.textContent = 'Unable to retrieve your location';
-}
+        status.textContent = '';
+        mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+        mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+      }
 
-if(!navigator.geolocation) {
-  status.textContent = 'Geolocation is not supported by your browser';
-} else {
-  status.textContent = 'Locating…';
-  navigator.geolocation.getCurrentPosition(success, error);
-}
+      function error() {
+        status.textContent = 'Unable to retrieve your location';
+      }
 
-}
-</script>
+      if (!navigator.geolocation) {
+        status.textContent = 'Geolocation is not supported by your browser';
+      } else {
+        status.textContent = 'Locating…';
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+
+    }
+  </script>
 
 
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-             <!-- <form action="/images" method="POST" enctype="multipart/form-data"> 
+  <div class="w3-row-padding">
+    <div class="w3-col m12">
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container w3-padding">
+          <!-- <form action="/images" method="POST" enctype="multipart/form-data"> 
               <div> 
 				<label for="name"><b style="color:red">Post Heading</b></label> 
 				<input type="text" id="name" placeholder="Post here" value="" name="name" required style="margin-left:20px"> 
@@ -80,63 +76,57 @@ if(!navigator.geolocation) {
 				 </div>
              
 				</form> -->
-        <form  action="/images" method="POST" enctype="multipart/form-data"  class="row g-3">
-          <div class="col-md-6">
-            <label for="email" class="form-label" required>Email</label>
-            <input type="email" class="form-control" id="email">
-          </div>
-          <div class="col-md-6">
-            <label for="name" class="form-label" >Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-          </div>
-		 <div class="col-md-6">
-            <label for="desc" class="form-label">Describe incident</label>
-			
-				<textarea  name="desc"  id="desc" value="" rows="4" cols="75" placeholder="Describe about booth capturing or other mishappening" required> 
-			   </textarea> 
-			
-          </div>
-		<div class="col-md-6"> <span><label for="image">Add Image</label> 
-				<input type="file" id="image" name="image" value="" required> </span>
-			</div>	
-          <div class="col-12">
-            <button id = "find-me" onclick="geoFindMe()">Show my location</button><br/>
-            <p id = "status"></p>
-            <a id = "map-link" target="_blank"></a>            
-          </div>
-          <div class="col-md-6">
-            <label for="city" class="form-label">City</label>
-            <input type="text" class="form-control" id="city" required>
-          </div>
-          <div class="col-md-4">
-            <label for="state" class="form-label">State</label>
-            <input type="text" class="form-control" id="state" required>
-          </div>
-          <div class="col-md-2">
-            <label for="pincode" class="form-label">PinCode</label>
-            <input type="number" class="form-control" id="pincode" required>
-          </div>
-          <div class="col-6">
-            <button type="submit" class="btn btn-primary">Sumbit</button>
-          </div>
-          <div class="col-6">
-            <button class="btn btn-primary" onclick="emailJS()">Sumbit To Election</button>
-          </div>
-          
-        </form>
+          <form action="/images" method="POST" enctype="multipart/form-data" class="row g-3">
+            <div class="col-md-6">
+              <label for="email" class="form-label" required>Email</label>
+              <input type="email" class="form-control" id="email">
             </div>
-          </div>
+            <div class="col-md-6">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="desc" class="form-label">Describe incident</label>
+
+              <textarea name="desc" id="desc" value="" rows="4" cols="75"
+                placeholder="Describe about booth capturing or other mishappening" required>
+			   </textarea>
+
+            </div>
+            <div class="col-md-6"> <span><label for="image">Add Image</label>
+                <input type="file" id="image" name="image" value="" required> </span>
+            </div>
+            <div class="col-12">
+              <button id="find-me" onclick="geoFindMe()">Show my location</button><br />
+              <p id="status"></p>
+              <a id="map-link" target="_blank"></a>
+            </div>
+            <div class="col-md-6">
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" required>
+            </div>
+            <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <input type="text" class="form-control" id="state" required>
+            </div>
+            <div class="col-md-2">
+              <label for="pincode" class="form-label">PinCode</label>
+              <input type="number" class="form-control" id="pincode" required>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary">Sumbit</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-primary" onclick="emailJS()">Sumbit To Election</button>
+            </div>
+
+          </form>
         </div>
       </div>
+    </div>
+  </div>
 
-      
-		
-		 
-	<%- include ('./partials/footer') %>
-		
-		
-      
-      
 
-      
-   
+
+
+  <%- include ('./partials/footer') %>
