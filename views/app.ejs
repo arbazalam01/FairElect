@@ -11,41 +11,33 @@
      
       
       emailjs.send("service_t7tmc49", "template_019lgjr", {
-        from_name: "FAIZ ",
+        from_name: "FairElect ",
         message: document.getElementById("desc").value+"Ät location"+document.querySelector('#map-link').textContent, 
         reply_to: "faizamu19@gmail.com",
       });
       // console.log(typeof(email));
-
     }
     function geoFindMe() {
-
       const status = document.querySelector('#status');
       const mapLink = document.querySelector('#map-link');
-
       mapLink.href = '';
       mapLink.textContent = '';
-
       function success(position) {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-
         status.textContent = '';
         mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
         mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
       }
-
       function error() {
         status.textContent = 'Unable to retrieve your location';
       }
-
       if (!navigator.geolocation) {
         status.textContent = 'Geolocation is not supported by your browser';
       } else {
         status.textContent = 'Locating…';
         navigator.geolocation.getCurrentPosition(success, error);
       }
-
     }
   </script>
 
@@ -76,6 +68,9 @@
 				 </div>
              
 				</form> -->
+			<div>
+	REPORT ELECTION COMPLAINT
+</div>
           <form action="/images" method="POST" enctype="multipart/form-data" class="row g-3">
             <div class="col-md-6">
               <label for="email" class="form-label" required>Email</label>
@@ -85,6 +80,10 @@
               <label for="name" class="form-label">Name</label>
               <input type="text" class="form-control" id="name" name="name" required>
             </div>
+			  <div class="col-md-6">
+            <label for="epicno" class="form-label" >Epic Number</label>
+            <input type="text" class="form-control" id="epicno" name="epicno" maxlength="10" minlength="10" required>
+          </div>
             <div class="col-md-6">
               <label for="desc" class="form-label">Describe incident</label>
 
@@ -96,7 +95,7 @@
             <div class="col-md-6"> <span><label for="image">Add Image</label>
                 <input type="file" id="image" name="image" value="" required> </span>
             </div>
-            <div class="col-12">
+            <div class="col-6"><label>Give Location Access to Election Commission</label>
               <button id="find-me" class="btn btn-primary" onclick="geoFindMe()">Show my location</button><br />
               <p id="status"></p>
               <a id="map-link" target="_blank"></a>
@@ -114,10 +113,10 @@
               <input type="number" class="form-control" id="pincode" required>
             </div>
             <div class="col-6">
-              <button type="submit" class="btn btn-primary">Sumbit</button>
+              <button type="submit" class="btn btn-primary">Sumbit to Record</button>
             </div>
             <div class="col-6">
-              <button class="btn btn-primary" onclick="emailJS()">Sumbit To Election</button>
+              <button class="btn btn-primary" onclick="emailJS()">Sumbit To Election Commission</button>
             </div>
 
           </form>

@@ -9,16 +9,16 @@ var imageSchema = new mongoose.Schema({
 		type:String, 
 		
 	},
+	epicno:{
+		type:Number,
+	},
     img: 
     { 
         data: Buffer, 
         contentType: String ,
 		
     } ,
-	localadd:{
-		type:String, 
-		
-	}, 
+	
 	city:{
 		type:String, 
 		
@@ -42,4 +42,4 @@ var imageSchema = new mongoose.Schema({
 	created: {type: Date,default: Date.now}
 }); 
 
-module.exports = new mongoose.model('Image', imageSchema); 
+module.exports = new mongoose.model('Image', imageSchema);
